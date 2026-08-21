@@ -5,7 +5,7 @@ const BASE = (window.__BASE__ !== undefined) ? window.__BASE__ : (
   (location.hostname.endsWith('github.io') || location.pathname.startsWith('/lingala-dictionary')) ? '/lingala-dictionary' : ''
 );
 function withBase(p){ return BASE + p; }
-function creditsHref(){ return withBase('/CREDITS.md'); }
+function creditsHref(){ return './CREDITS.md'; }
 const app = document.getElementById('app');
 let DICT = [];
 let SOURCES = [];
@@ -340,8 +340,8 @@ async function init(){
   app.innerHTML=`<div class="loading"><div class="spinner"></div><p>Loading dictionary…</p></div>`;
   try{
     const [dict, sources]=await Promise.all([
-      fetch(withBase('/data/processed/dictionary.json')).then(r=>{ if(!r.ok) throw new Error('Failed to load '+r.url+' status '+r.status); return r.json(); }),
-      fetch(withBase('/data/sources.json')).then(r=>{ if(!r.ok) throw new Error('Failed to load '+r.url+' status '+r.status); return r.json(); }),
+      fetch('./data/processed/dictionary.json').then(r=>{ if(!r.ok) throw new Error('Failed to load '+r.url+' status '+r.status); return r.json(); }),
+      fetch('./data/sources.json').then(r=>{ if(!r.ok) throw new Error('Failed to load '+r.url+' status '+r.status); return r.json(); }),
     ]);
     DICT=dict;
     SOURCES=sources;
