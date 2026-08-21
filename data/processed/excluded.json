@@ -1,0 +1,26 @@
+[
+  {
+    "reason": "EL single letter/number",
+    "chunk": "EnNcuisH-LinGaLa DICTIONARY 87",
+    "parsed": {
+      "lingala": "87",
+      "english": [
+        "EnNcuisH-LinGaLa DICTIONARY"
+      ],
+      "word_type": "unknown",
+      "score": 1
+    }
+  },
+  {
+    "reason": "EL single letter/number",
+    "chunk": "Enc iisH-LInGALA DICTIONARY 89",
+    "parsed": {
+      "lingala": "89",
+      "english": [
+        "Enc iisH-LInGALA DICTIONARY"
+      ],
+      "word_type": "unknown",
+      "score": 0
+    }
+  }
+]

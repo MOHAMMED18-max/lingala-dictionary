@@ -1,0 +1,21 @@
+[
+  {
+    "id": "hippocrene-lingala-2016",
+    "name": "Mawadza & Matuka, Lingala Dictionary & Phrasebook, Hippocrene Books 2016 (via lingen_djvu.txt)",
+    "description": "Lingala-English and English-Lingala dictionary extracted from lingen_djvu.txt. This is the ONLY source of truth for the website. Includes both Lingala-English and inverted English-Lingala entries, with OCR noise removed, wrapped lines joined, and duplicates merged. Phrasebook section excluded.",
+    "license": "Copyrighted - All rights reserved (Hippocrene Books, Inc. 2016). Used with permission for this project. NOT CC BY-SA. Do not redistribute without permission.",
+    "license_url": "",
+    "source_url": "",
+    "raw_file": "lingen_djvu.txt",
+    "extracted_by": "scripts/build-from-lingen.js (DP segmentation, scoring, and merging)",
+    "attribution_required": true,
+    "notes": "Old Wiktionary data (kaikki.org, CC BY-SA 4.0) is no longer used for dictionary words and is kept only as backup in data/processed/dictionary.json.bak and data/raw/kaikki-lingala.jsonl. The new dictionary contains 2314 unique Lingala headwords (after merging) from 3980 raw entries (LE 1991 chunks + EL 1836 chunks).",
+    "counts": {
+      "le_chunks": 1991,
+      "el_chunks": 1836,
+      "raw_entries": 3980,
+      "unique_entries": 2314,
+      "excluded": 2
+    }
+  }
+]

@@ -1,4 +1,11 @@
 // app.js — Lingala Dictionary (Hippocrene source)
+// GitHub Pages base path: must be /lingala-dictionary on GH Pages, "" on localhost
+// This handles absolute paths for CSS/JS/data so the site works in both environments.
+const BASE = (window.__BASE__ !== undefined) ? window.__BASE__ : (
+  (location.hostname.endsWith('github.io') || location.pathname.startsWith('/lingala-dictionary')) ? '/lingala-dictionary' : ''
+);
+function withBase(p){ return BASE + p; }
+function creditsHref(){ return withBase('/CREDITS.md'); }
 const app = document.getElementById('app');
 let DICT = [];
 let SOURCES = [];
@@ -245,7 +252,7 @@ function renderAbout(){
         <h2>What is Lingala Dictionary?</h2>
         <p>A premium, searchable Lingala–English dictionary built for students, travelers, and anyone learning Lingala. Every word is searchable, browsable A–Z, and linked to its correct detail page.</p>
         <h2>Where does the data come from?</h2>
-        <p>From <strong>${esc(src.name || 'Mawadza & Matuka, Lingala Dictionary & Phrasebook, Hippocrene Books 2016')}</strong> via <code>lingen_djvu.txt</code>. This file is the <strong>only source of truth</strong>. Both <strong>Lingala–English</strong> (primary) and <strong>English–Lingala</strong> (inverted) sections were parsed — <strong>2336 unique headwords</strong> from <strong>3980 raw entries</strong>. Phrasebook was excluded. License: <strong>${esc(src.license || 'Copyrighted')}</strong>. See <a href="/CREDITS.md" target="_blank">CREDITS.md</a> for full attribution. Old Wiktionary data is no longer used and is kept only as backup.</p>
+        <p>From <strong>${esc(src.name || 'Mawadza & Matuka, Lingala Dictionary & Phrasebook, Hippocrene Books 2016')}</strong> via <code>lingen_djvu.txt</code>. This file is the <strong>only source of truth</strong>. Both <strong>Lingala–English</strong> (primary) and <strong>English–Lingala</strong> (inverted) sections were parsed — <strong>2336 unique headwords</strong> from <strong>3980 raw entries</strong>. Phrasebook was excluded. License: <strong>${esc(src.license || 'Copyrighted')}</strong>. See <a href="${creditsHref()}" target="_blank">CREDITS.md</a> for full attribution. Old Wiktionary data is no longer used and is kept only as backup.</p>
         <h2>How was it built?</h2>
         <p>OCR noise (page numbers, footers like “Lingala Dictionary & Phrasebook”, letter headers) was removed, wrapped lines were joined, entries were split by blank lines and by “/”, word types like <code>(n.)</code>, <code>(v.)</code> were extracted, and duplicates were merged by normalized Lingala + word type — preserving distinct meanings and distinct word types.</p>
         <h2>Search</h2>
@@ -333,8 +340,8 @@ async function init(){
   app.innerHTML=`<div class="loading"><div class="spinner"></div><p>Loading dictionary…</p></div>`;
   try{
     const [dict, sources]=await Promise.all([
-      fetch('/data/processed/dictionary.json').then(r=>r.json()),
-      fetch('/data/sources.json').then(r=>r.json()),
+      fetch(withBase('/data/processed/dictionary.json')).then(r=>{ if(!r.ok) throw new Error('Failed to load '+r.url+' status '+r.status); return r.json(); }),
+      fetch(withBase('/data/sources.json')).then(r=>{ if(!r.ok) throw new Error('Failed to load '+r.url+' status '+r.status); return r.json(); }),
     ]);
     DICT=dict;
     SOURCES=sources;
